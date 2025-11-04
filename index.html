@@ -860,7 +860,7 @@
             announcement.className = 'agent-announcement';
             announcement.innerHTML = `
                 <div>${agent.stage.toUpperCase()}</div>
-                <div style="font-size: 0.7em; margin-top: 10px;">C: ${agent.ftd}</div>
+                <div style="font-size: 0.7em; margin-top: 10px;">Count: ${agent.ftd}</div>
             `;
             document.body.appendChild(announcement);
             
@@ -1007,4 +1007,5 @@
         setInterval(autoUpdate, CONFIG.UPDATE_INTERVAL);
     </script>
 </body>
+
 </html>
