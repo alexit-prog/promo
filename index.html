@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promo November</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0b1020;
+            --bg2: #1a1f3a;
+            --panel: #121933;
+            --muted: #aab1c3;
+            --text: #e8ecf8;
+            --accent: #7dd3fc;
+            --good: #34d399;
+            --warn: #f59e0b;
+            --bad: #ef4444;
+            --gold: #fbbf24;
+            --silver: #e5e7eb;
+            --bronze: #d97706;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: "Inter", system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(125,211,252,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(52,211,153,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(245,158,11,0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .title {
+            font-weight: 900;
+            font-size: clamp(28px, 5vw, 42px);
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            background: linear-gradient(135deg, #fff 0%, var(--accent) 50%, #fff 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGradient 3s ease-in-out infinite;
+            text-shadow: 0 0 40px rgba(125,211,252,0.5);
+        }
+
+        @keyframes titleGradient {
+            0%, 100% { background-position: 0% 50% }
+            50% { background-position: 100% 50% }
+        }
+
+        .title .trophy {
+            font-size: 1.2em;
+            animation: trophyRotate 3s ease-in-out infinite;
+            display: inline-block;
+            filter: drop-shadow(0 0 10px rgba(255,215,0,0.6));
+        }
+
+        @keyframes trophyRotate {
+            0%, 100% { transform: rotate(-5deg) scale(1) }
+            50% { transform: rotate(5deg) scale(1.1) }
+        }
+
+        .stats-bar {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(125,211,252,.08), rgba(52,211,153,.08));
+            border: 1px solid rgba(125,211,252,.25);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 16px 24px;
+            box-shadow: 0 8px 32px rgba(0,0,0,.3);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex: 1;
+            min-width: 220px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-icon {
+            font-size: 32px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) }
+            50% { transform: translateY(-8px) }
+        }
+
+        .stat-content h3 {
+            font-size: 14px;
+            color: var(--muted);
+            font-weight: 600;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--accent);
+            text-shadow: 0 0 20px rgba(125,211,252,.6);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .card {
+            background: linear-gradient(145deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+            border: 1px solid rgba(255,255,255,.1);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,.4);
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 0.8s ease;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--good), var(--warn));
+            animation: topBar 3s linear infinite;
+            background-size: 200% 100%;
+        }
+
+        @keyframes topBar {
+            0% { background-position: 0% 0% }
+            100% { background-position: 200% 0% }
+        }
+
+        .card h2 {
+            margin: 8px 0 16px 0;
+            font-size: 24px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .team-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--good));
+            font-size: 18px;
+            animation: badgePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(125,211,252,0.4);
+            }
+            50% { 
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(125,211,252,0);
+            }
+        }
+
+        .total-ftd {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--accent);
+            background: rgba(125,211,252,.1);
+            border: 1px solid rgba(125,211,252,.3);
+            padding: 6px 12px;
+            border-radius: 12px;
+            text-shadow: 0 0 10px rgba(125,211,252,.5);
+        }
+
+        .list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 14px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,.08);
+            background: rgba(255,255,255,.02);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .row:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(59,130,246,0.3);
+            border-color: rgba(99,102,241,0.5);
+        }
+
+        .row.team-leader {
+            background: linear-gradient(135deg, rgba(255,215,0,.25), rgba(255,215,0,.1));
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 30px rgba(255,215,0,.5);
+            animation: leaderGlow 2.5s ease-in-out infinite;
+        }
+
+        .row.team-leader .name::before {
+            content: '👑 ';
+            font-size: 20px;
+            animation: crownFloat 2s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes crownFloat {
+            0%, 100% { transform: translateY(0) rotate(-5deg) }
+            50% { transform: translateY(-4px) rotate(5deg) }
+        }
+
+        @keyframes leaderGlow {
+            0%, 100% { 
+                box-shadow: 0 0 30px rgba(255,215,0,.5), inset 0 0 20px rgba(255,215,0,.1);
+            }
+            50% { 
+                box-shadow: 0 0 50px rgba(255,215,0,.8), inset 0 0 30px rgba(255,215,0,.2);
+                transform: translateY(-2px);
+            }
+        }
+
+        .row.second-place {
+            background: linear-gradient(135deg, rgba(192,192,192,.2), rgba(192,192,192,.08));
+            border: 2px solid rgba(192,192,192,.5);
+        }
+
+        .row.second-place .name::before {
+            content: '🥈 ';
+            font-size: 18px;
+            display: inline-block;
+        }
+
+        .row.third-place {
+            background: linear-gradient(135deg, rgba(205,127,50,.18), rgba(205,127,50,.06));
+            border: 2px solid rgba(205,127,50,.45);
+        }
+
+        .row.third-place .name::before {
+            content: '🥉 ';
+            font-size: 17px;
+            display: inline-block;
+        }
+
+        .name {
+            font-weight: 600;
+            font-size: 15px;
+            color: #e2e8f0;
+            flex: 1;
+        }
+
+        .ftd-value {
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(125,211,252,.5);
+            transition: all 0.3s ease;
+        }
+
+        .ftd-increase {
+            animation: ftdPulse 1.5s ease;
+            color: var(--good);
+        }
+
+        @keyframes ftdPulse {
+            0% { transform: scale(1) }
+            25% { transform: scale(1.3) rotate(5deg); color: #34d399; }
+            50% { transform: scale(1.5) rotate(-5deg); color: #fbbf24; }
+            75% { transform: scale(1.3) rotate(5deg); color: #a78bfa; }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        .celebration {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 6em;
+            z-index: 1000;
+            pointer-events: none;
+            animation: celebration 2s ease-out forwards;
+            filter: drop-shadow(0 0 20px rgba(255,255,255,0.8));
+        }
+
+        @keyframes celebration {
+            0% {
+                transform: translate(-50%, -50%) scale(0) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(2) rotate(180deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(3) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .agent-announcement {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: clamp(3em, 8vw, 6em);
+            font-weight: 900;
+            z-index: 999;
+            pointer-events: none;
+            animation: announceSlide 3s ease-out forwards;
+            text-shadow: 0 0 30px rgba(96, 165, 250, 0.8), 0 0 60px rgba(59, 130, 246, 0.6);
+            background: linear-gradient(90deg, #60a5fa, #93c5fd, #60a5fa);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        @keyframes announceSlide {
+            0% {
+                transform: translate(-50%, -50%) scale(0) rotate(-180deg);
+                opacity: 0;
+            }
+            30% {
+                transform: translate(-50%, -50%) scale(1.2) rotate(10deg);
+                opacity: 1;
+            }
+            70% {
+                transform: translate(-50%, -50%) scale(1) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(0.8) rotate(0deg);
+                opacity: 0;
+            }
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            z-index: 998;
+            pointer-events: none;
+        }
+
+        .confetti-piece {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            animation: confettiFall 3s ease-out forwards;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .money {
+            position: fixed;
+            width: 60px;
+            height: 30px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 3px;
+            z-index: 997;
+            pointer-events: none;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 2px 10px rgba(16,185,129,0.5);
+            animation: moneyFall 4s ease-out forwards;
+        }
+
+        @keyframes moneyFall {
+            0% {
+                transform: translateY(-100px) rotate(0deg) scale(0);
+                opacity: 1;
+            }
+            20% {
+                transform: translateY(0) rotate(180deg) scale(1);
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg) scale(0.8);
+                opacity: 0;
+            }
+        }
+
+        .firework {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: #fbbf24;
+            border-radius: 50%;
+            z-index: 996;
+            pointer-events: none;
+            box-shadow: 0 0 10px #fbbf24;
+            animation: fireworkLaunch 1s ease-out forwards;
+        }
+
+        @keyframes fireworkLaunch {
+            0% {
+                transform: translateY(100vh) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(0);
+                opacity: 0;
+            }
+        }
+
+        .spark {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: radial-gradient(circle, #fbbf24, #f59e0b);
+            border-radius: 50%;
+            animation: sparkBurst 1.5s ease-out forwards;
+        }
+
+        @keyframes sparkBurst {
+            0% {
+                transform: translate(0, 0) scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--x), var(--y)) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .bottom-toolbar {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            justify-content: center;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,.1);
+            flex-wrap: wrap;
+        }
+
+        button {
+            cursor: pointer;
+            background: linear-gradient(135deg, #1e293b, #334155);
+            color: #e2e8f0;
+            border: 1px solid rgba(255,255,255,.15);
+            border-radius: 12px;
+            padding: 12px 20px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(125,211,252,.3);
+            border-color: var(--accent);
+        }
+
+        .update-time {
+            text-align: center;
+            opacity: 0.5;
+            font-size: 0.8em;
+            color: #64748b;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.5em;
+            color: #60a5fa;
+            text-shadow: 0 0 20px rgba(96,165,250,0.5);
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 16px }
+            .grid { grid-template-columns: 1fr; gap: 16px }
+            .stat-card { min-width: 100%; padding: 12px 16px }
+            .title { font-size: 24px }
+            .card { padding: 16px }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">
+                <span class="trophy">🏆</span>
+                Promo November
+                <span class="trophy">🏆</span>
+            </h1>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat-card">
+                <div class="stat-icon">💰</div>
+                <div class="stat-content">
+                    <h3>Total</h3>
+                    <div class="stat-value" id="totalFTD">0</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🚀</div>
+                <div class="stat-content">
+                    <h3>Top Score</h3>
+                    <div class="stat-value" id="topScore">0</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="teamsGrid" class="grid">
+            <div class="loading">Загрузка данных...</div>
+        </div>
+
+        <div class="bottom-toolbar">
+            <button id="soundBtn">
+                <span>🔔 Включить звук</span>
+            </button>
+            <button id="refreshBtn">
+                <span>🔄 Обновить</span>
+            </button>
+        </div>
+
+        <div class="update-time" id="updateTime">
+            Последнее обновление: -
+        </div>
+    </div>
+
+    <audio id="achievementSound" preload="auto">
+        <source src="https://raw.githubusercontent.com/exellentyes-hue/sales-leaderboard/main/videoplayback.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const CONFIG = {
+            SHEET_ID: '1Xpqm_ORSrJTB7qhkFihfXgkGUk4swSTgKurAhno3u4E',
+            API_KEY: 'AIzaSyC7OcXNDypZTrqYIHhNImFdvhtKnxa5lvE',
+            RANGE: 'Аркуш1!A:C',  // Changed from SHEET_NAME to RANGE with full range specification
+            UPDATE_INTERVAL: 5000
+        };
+
+        let previousData = {};
+        let soundEnabled = false;
+        let teamIcons = ['🏢', '🚀', '💼', '🎯', '⚡', '🔥', '💡', '🌟'];
+        let isFirstLoad = true; // Flag to prevent animations on first load
+        let retryCount = 0;
+
+        // Sound management
+        document.getElementById('soundBtn').addEventListener('click', function() {
+            soundEnabled = !soundEnabled;
+            this.innerHTML = soundEnabled ? '<span>🔊 Звук включен</span>' : '<span>🔇 Включить звук</span>';
+            if (soundEnabled) {
+                const audio = document.getElementById('achievementSound');
+                audio.volume = 0.1;
+                audio.play().then(() => {
+                    audio.pause();
+                    audio.currentTime = 0;
+                    audio.volume = 1;
+                }).catch(e => console.log('Error:', e));
+            }
+        });
+
+        // Refresh button
+        document.getElementById('refreshBtn').addEventListener('click', () => {
+            fetchData();
+        });
+
+        async function fetchData() {
+            try {
+                const url = `https://sheets.googleapis.com/v4/spreadsheets/${CONFIG.SHEET_ID}/values/${CONFIG.RANGE}?key=${CONFIG.API_KEY}`;
+                console.log('Fetching from:', url);
+                
+                const response = await fetch(url);
+                console.log('Response status:', response.status);
+                
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('Response error:', errorText);
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                console.log('Data received:', data);
+                
+                if (!data.values || data.values.length === 0) {
+                    throw new Error('No data in spreadsheet');
+                }
+                
+                retryCount = 0; // Reset retry counter on success
+                const processedData = processData(data.values);
+                
+                if (processedData) {
+                    renderData(processedData);
+                }
+                
+                return processedData;
+            } catch (error) {
+                console.error('Fetch error details:', error);
+                retryCount++;
+                
+                // Show error but don't use test data
+                if (retryCount > 3) {
+                    showError(`Не удалось загрузить данные после ${retryCount} попыток. Ошибка: ${error.message}`);
+                } else {
+                    showError(`Попытка загрузки ${retryCount}/3...`);
+                    // Retry after 2 seconds
+                    setTimeout(() => fetchData(), 2000);
+                }
+                return null;
+            }
+        }
+
+        function processData(values) {
+            if (!values || values.length < 2) return null;
+            
+            const headers = values[0];
+            const rows = values.slice(1);
+            
+            const teams = {};
+            let allAgents = [];
+            
+            rows.forEach(row => {
+                const team = row[0];
+                const stage = row[1];
+                const ftd = parseInt(row[2]) || 0;
+                
+                if (!teams[team]) {
+                    teams[team] = [];
+                }
+                
+                const agent = {
+                    team: team,
+                    stage: stage,
+                    ftd: ftd
+                };
+                
+                teams[team].push(agent);
+                allAgents.push(agent);
+            });
+            
+            // Sort agents in each team
+            Object.keys(teams).forEach(team => {
+                teams[team].sort((a, b) => b.ftd - a.ftd);
+            });
+            
+            allAgents.sort((a, b) => b.ftd - a.ftd);
+            
+            return {
+                teams: teams,
+                allAgents: allAgents
+            };
+        }
+
+        function renderData(data) {
+            if (!data) return;
+            
+            const container = document.getElementById('teamsGrid');
+            const existingCards = container.querySelectorAll('.card');
+            
+            if (existingCards.length === 0) {
+                container.innerHTML = '';
+            }
+            
+            let totalFTD = 0;
+            let topScore = 0;
+            
+            let teamIndex = 0;
+            Object.keys(data.teams).forEach(teamName => {
+                const teamAgents = data.teams[teamName];
+                const teamTotal = teamAgents.reduce((sum, agent) => sum + agent.ftd, 0);
+                totalFTD += teamTotal;
+                
+                let teamCard = document.getElementById(`team-${teamName}`);
+                
+                if (!teamCard) {
+                    teamCard = document.createElement('div');
+                    teamCard.className = 'card';
+                    teamCard.id = `team-${teamName}`;
+                    teamCard.style.animationDelay = `${teamIndex * 0.1}s`;
+                    
+                    const header = document.createElement('h2');
+                    const badge = document.createElement('span');
+                    badge.className = 'team-badge';
+                    badge.textContent = teamIcons[teamIndex % teamIcons.length];
+                    header.appendChild(badge);
+                    header.appendChild(document.createTextNode(' ' + teamName));
+                    teamCard.appendChild(header);
+                    
+                    const totalBadge = document.createElement('div');
+                    totalBadge.className = 'total-ftd';
+                    totalBadge.id = `total-${teamName}`;
+                    teamCard.appendChild(totalBadge);
+                    
+                    const list = document.createElement('div');
+                    list.className = 'list';
+                    list.id = `list-${teamName}`;
+                    teamCard.appendChild(list);
+                    
+                    container.appendChild(teamCard);
+                }
+                
+                // Update total
+                const totalBadge = document.getElementById(`total-${teamName}`);
+                totalBadge.textContent = `Total: ${teamTotal}`;
+                
+                // Update agents list
+                const list = document.getElementById(`list-${teamName}`);
+                list.innerHTML = '';
+                
+                teamAgents.forEach((agent, idx) => {
+                    topScore = Math.max(topScore, agent.ftd);
+                    
+                    const row = document.createElement('div');
+                    row.className = 'row';
+                    if (idx === 0) row.classList.add('team-leader');
+                    else if (idx === 1) row.classList.add('second-place');
+                    else if (idx === 2) row.classList.add('third-place');
+                    
+                    const name = document.createElement('div');
+                    name.className = 'name';
+                    name.textContent = agent.stage;
+                    
+                    const ftdValue = document.createElement('div');
+                    ftdValue.className = 'ftd-value';
+                    ftdValue.textContent = agent.ftd;
+                    
+                    // Check for increase (but not on first load)
+                    const key = `${agent.team}-${agent.stage}`;
+                    if (!isFirstLoad && previousData[key] && previousData[key] < agent.ftd) {
+                        ftdValue.classList.add('ftd-increase');
+                        celebrateIncrease(agent);
+                    }
+                    previousData[key] = agent.ftd;
+                    
+                    row.appendChild(name);
+                    row.appendChild(ftdValue);
+                    list.appendChild(row);
+                });
+                
+                teamIndex++;
+            });
+            
+            // Update stats
+            document.getElementById('totalFTD').textContent = totalFTD;
+            document.getElementById('topScore').textContent = topScore;
+            
+            // After first successful render, allow animations
+            if (isFirstLoad && data.teams && Object.keys(data.teams).length > 0) {
+                isFirstLoad = false;
+            }
+            
+            updateTime();
+        }
+
+        function showAgentAnnouncement(agent) {
+            const announcement = document.createElement('div');
+            announcement.className = 'agent-announcement';
+            announcement.innerHTML = `
+                <div>${agent.stage.toUpperCase()}</div>
+                <div style="font-size: 0.7em; margin-top: 10px;">FTD: ${agent.ftd}</div>
+            `;
+            document.body.appendChild(announcement);
+            
+            setTimeout(() => announcement.remove(), 3000);
+        }
+
+        function celebrateIncrease(agent) {
+            showAgentAnnouncement(agent);
+            createConfetti();
+            createMoneyRain();
+            createFireworks();
+            showCelebration();
+            playSound();
+        }
+
+        function createConfetti() {
+            const colors = ['#60a5fa', '#a78bfa', '#f472b6', '#fbbf24', '#34d399'];
+            
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = '-10px';
+                    
+                    const piece = document.createElement('div');
+                    piece.className = 'confetti-piece';
+                    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    piece.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    
+                    confetti.appendChild(piece);
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 4000);
+                }, i * 30);
+            }
+        }
+
+        function createMoneyRain() {
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const money = document.createElement('div');
+                    money.className = 'money';
+                    money.textContent = '$';
+                    money.style.left = Math.random() * 100 + '%';
+                    money.style.animationDelay = Math.random() * 0.5 + 's';
+                    
+                    document.body.appendChild(money);
+                    
+                    setTimeout(() => money.remove(), 5000);
+                }, i * 100);
+            }
+        }
+
+        function createFireworks() {
+            for (let i = 0; i < 3; i++) {
+                setTimeout(() => {
+                    const x = Math.random() * window.innerWidth;
+                    const y = Math.random() * window.innerHeight / 2;
+                    
+                    const firework = document.createElement('div');
+                    firework.className = 'firework';
+                    firework.style.left = x + 'px';
+                    firework.style.bottom = '0';
+                    
+                    document.body.appendChild(firework);
+                    
+                    setTimeout(() => {
+                        firework.remove();
+                        createSparks(x, y);
+                    }, 1000);
+                }, i * 300);
+            }
+        }
+
+        function createSparks(x, y) {
+            const colors = ['#fbbf24', '#f59e0b', '#ef4444', '#10b981', '#3b82f6'];
+            
+            for (let i = 0; i < 20; i++) {
+                const spark = document.createElement('div');
+                spark.className = 'spark';
+                spark.style.left = x + 'px';
+                spark.style.top = y + 'px';
+                spark.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                const angle = (Math.PI * 2 * i) / 20;
+                const velocity = Math.random() * 100 + 50;
+                spark.style.setProperty('--x', Math.cos(angle) * velocity + 'px');
+                spark.style.setProperty('--y', Math.sin(angle) * velocity + 'px');
+                
+                document.body.appendChild(spark);
+                
+                setTimeout(() => spark.remove(), 1500);
+            }
+        }
+
+        function showCelebration() {
+            const emojis = ['🎉', '🎊', '✨', '🌟', '🔥', '💥', '🚀', '🏆'];
+            const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+            
+            const celebDiv = document.createElement('div');
+            celebDiv.className = 'celebration';
+            celebDiv.textContent = emoji;
+            document.body.appendChild(celebDiv);
+            
+            setTimeout(() => celebDiv.remove(), 2000);
+        }
+
+        function playSound() {
+            if (!soundEnabled) return;
+            const audio = document.getElementById('achievementSound');
+            audio.currentTime = 0;
+            audio.play().catch(e => console.log('Sound error:', e));
+        }
+
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleString('ru-RU');
+            document.getElementById('updateTime').textContent = `Последнее обновление: ${timeString}`;
+        }
+
+        function showError(message) {
+            const container = document.getElementById('teamsGrid');
+            container.innerHTML = `<div style="text-align:center;padding:50px;color:#ef4444;">${message}</div>`;
+        }
+
+        async function init() {
+            console.log('Initializing...');
+            await fetchData();
+        }
+
+        async function autoUpdate() {
+            if (retryCount > 3) {
+                console.log('Skipping auto-update due to multiple failures');
+                return;
+            }
+            await fetchData();
+        }
+
+        // Initialize
+        init();
+
+        // Auto-update every 5 seconds
+        setInterval(autoUpdate, CONFIG.UPDATE_INTERVAL);
+    </script>
+</body>
+</html>
