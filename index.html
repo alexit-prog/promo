@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Promo November</title>
+    <title>Promo December</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -57,9 +57,9 @@
         }
 
         .container {
-            max-width: 100%;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 24px 48px;
+            padding: 24px;
             position: relative;
             z-index: 2;
         }
@@ -155,10 +155,9 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 16px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
             margin-bottom: 32px;
-            transform: scale(0.9); /* необязательно, если нужно чуть уменьшить масштаб */
         }
 
         .card {
@@ -248,7 +247,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 12px 14px;
+            padding: 11px 13px;
             border-radius: 16px;
             border: 1px solid rgba(255,255,255,.08);
             background: rgba(255,255,255,.02);
@@ -591,7 +590,7 @@
         <div class="header">
             <h1 class="title">
                 <span class="trophy">🏆</span>
-                Promo November
+                Promo December
                 <span class="trophy">🏆</span>
             </h1>
         </div>
@@ -639,17 +638,16 @@
         const CONFIG = {
             SHEET_ID: '1Xpqm_ORSrJTB7qhkFihfXgkGUk4swSTgKurAhno3u4E',
             API_KEY: 'AIzaSyC7OcXNDypZTrqYIHhNImFdvhtKnxa5lvE',
-            RANGE: 'Аркуш1!A:C',  // Changed from SHEET_NAME to RANGE with full range specification
+            RANGE: 'Аркуш1!A:C',
             UPDATE_INTERVAL: 5000
         };
 
         let previousData = {};
         let soundEnabled = false;
         let teamIcons = ['🏢', '🚀', '💼', '🎯', '⚡', '🔥', '💡', '🌟'];
-        let isFirstLoad = true; // Flag to prevent animations on first load
+        let isFirstLoad = true;
         let retryCount = 0;
 
-        // Sound management
         document.getElementById('soundBtn').addEventListener('click', function() {
             soundEnabled = !soundEnabled;
             this.innerHTML = soundEnabled ? '<span>🔊 Звук включен</span>' : '<span>🔇 Включить звук</span>';
@@ -664,7 +662,6 @@
             }
         });
 
-        // Refresh button
         document.getElementById('refreshBtn').addEventListener('click', () => {
             fetchData();
         });
@@ -690,7 +687,7 @@
                     throw new Error('No data in spreadsheet');
                 }
                 
-                retryCount = 0; // Reset retry counter on success
+                retryCount = 0;
                 const processedData = processData(data.values);
                 
                 if (processedData) {
@@ -702,12 +699,10 @@
                 console.error('Fetch error details:', error);
                 retryCount++;
                 
-                // Show error but don't use test data
                 if (retryCount > 3) {
                     showError(`Не удалось загрузить данные после ${retryCount} попыток. Ошибка: ${error.message}`);
                 } else {
                     showError(`Попытка загрузки ${retryCount}/3...`);
-                    // Retry after 2 seconds
                     setTimeout(() => fetchData(), 2000);
                 }
                 return null;
@@ -742,7 +737,6 @@
                 allAgents.push(agent);
             });
             
-            // Sort agents in each team
             Object.keys(teams).forEach(team => {
                 teams[team].sort((a, b) => b.ftd - a.ftd);
             });
@@ -803,11 +797,9 @@
                     container.appendChild(teamCard);
                 }
                 
-                // Update total
                 const totalBadge = document.getElementById(`total-${teamName}`);
                 totalBadge.textContent = `Total: ${teamTotal}`;
                 
-                // Update agents list
                 const list = document.getElementById(`list-${teamName}`);
                 list.innerHTML = '';
                 
@@ -818,7 +810,7 @@
                     row.className = 'row';
                     if (idx === 0) row.classList.add('team-leader');
                     else if (idx === 1) row.classList.add('second-place');
-                    //else if (idx === 2) row.classList.add('third-place');
+                    else if (idx === 2) row.classList.add('third-place');
                     
                     const name = document.createElement('div');
                     name.className = 'name';
@@ -828,7 +820,6 @@
                     ftdValue.className = 'ftd-value';
                     ftdValue.textContent = agent.ftd;
                     
-                    // Check for increase (but not on first load)
                     const key = `${agent.team}-${agent.stage}`;
                     if (!isFirstLoad && previousData[key] && previousData[key] < agent.ftd) {
                         ftdValue.classList.add('ftd-increase');
@@ -844,11 +835,9 @@
                 teamIndex++;
             });
             
-            // Update stats
             document.getElementById('totalFTD').textContent = totalFTD;
             document.getElementById('topScore').textContent = topScore;
             
-            // After first successful render, allow animations
             if (isFirstLoad && data.teams && Object.keys(data.teams).length > 0) {
                 isFirstLoad = false;
             }
@@ -861,7 +850,7 @@
             announcement.className = 'agent-announcement';
             announcement.innerHTML = `
                 <div>${agent.stage.toUpperCase()}</div>
-                <div style="font-size: 0.7em; margin-top: 10px;">Count: ${agent.ftd}</div>
+                <div style="font-size: 0.7em; margin-top: 10px;">C: ${agent.ftd}</div>
             `;
             document.body.appendChild(announcement);
             
@@ -1001,15 +990,9 @@
             await fetchData();
         }
 
-        // Initialize
         init();
 
-        // Auto-update every 5 seconds
         setInterval(autoUpdate, CONFIG.UPDATE_INTERVAL);
     </script>
 </body>
-
 </html>
-
-
-
